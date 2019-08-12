@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Z-Index 프로퍼티</title>
+<style>
+div {position : absolute;}/*절대배치*/
+img {position : absolute;}/*절대배치*/
+#r1 {z-index:-3;left:10px;top:20px;}/*+일수록 앞, -일수록 뒤*/
+#r2 {z-index:2;left:40px;top:30px;}/*+일수록 앞, -일수록 뒤*/
+#r3 {z-index:3;left:80px;top:40px;}/*+일수록 앞, -일수록 뒤*/
+#r4 {z-index:7;left:120px;top:50px;}/*+일수록 앞, -일수록 뒤*/
+</style>
+<meta charset="UTF-8">
+kopo01
+</head>
+<body>
+<h3>Index 프로퍼티</h3>
+<hr>
+<div>
+<img id="r1" src="./r1.jpg" width="200" height="140" alt="r1">
+<img id="r2" src="./r2.png" width="100" height="140" alt="r2">
+<img id="r3" src="./r3.png" width="100" height="140" alt="r3">
+<img id="r4" src="./r4.jpg" width="100" height="140" alt="r4">
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<form action='<?=$PHP_SELF?>' method='get' id="next_form">
+  <table>
+    <tr>
+      <th width="15%">조건검색</th>
+      <td align="left" width="85%">
+        <select name="fld1" class="select" style="width : 90px;">
+          <option value="name">이름
+          <option value="hphone">휴대폰
+        </select>
+
+        <input type="text" id="sch1" name="sch1" class="input">
+
+        <input id="next" type="button" style="height:25px" class="b h28 t5 color blue_big" value="검색">
+      </td>
+    </tr>
+  </table>
+</form>
+<script>
+  $("#next").click(function(){
+    if($.trim($("#sch1").val())==''){
+      alert("입력해주세요.");
+      return false;
+    }  
+    $("#next_form").submit();
+  }); 
+</script>

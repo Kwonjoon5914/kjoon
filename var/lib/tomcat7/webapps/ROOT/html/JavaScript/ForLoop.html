@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+kopo01
+<head>
+
+<SCRIPT>
+for(i=0;i<10;i++){
+	document.write(i);
+}
+</SCRIPT>
+<SCRIPT>
+document.write("<H2>구구단</H2>");
+document.write("<TABLE border=0 width=100%>");
+for(var k = 1; k < 10; k=k+3){
+	for(var l =1; l < 10; l++){
+		document.write("<TR>");
+		document.write("<TD>"+k+"*"+l+"="+k*l+"</TD>");
+		document.write("<TD>"+(k+1)+"*"+l+"="+(k+1)*l+"</TD>");
+		document.write("<TD>"+(k+2)+"*"+l+"="+(k+2)*l+"</TD>");
+		document.write("</TR>");
+	}
+		document.write("<TR><TD colspan=3><HR></TD></TR>");
+}
+document.write("</TABLE>");
+</SCRIPT>
+</head>
+<body>
+</body>
+</html>

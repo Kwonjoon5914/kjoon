@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+kopo01
+<head>
+<SCRIPT>
+	var name = "Hello";//함수 외부에서 사용된 변수
+function call1(){
+	var name = "World";//함수의 내부에서만 사용되는 변수
+	document.write("지역:"+name);
+}
+function call2(){
+	document.write("전역:"+name);
+}
+</SCRIPT>
+</head>
+<body>
+<SCRIPT>call1();</SCRIPT>
+<SCRIPT>call2();</SCRIPT>
+Good...
+</body>
+</html>

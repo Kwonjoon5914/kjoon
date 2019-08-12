@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="UTF-8">
+kopo01
+<head>
+<title>영수증</title>
+
+<script>
+		
+			// 숫자에 콤마를 찍기 위한 함수
+			function numberWithCommas(x) {
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			// 숫자 앞에 0 채워 넣기
+			function pad(n, width) {
+				n = n + '';
+				return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+			}
+		
+</script>
+</head>
+<body>
+<script>
+
+		var d = new Date();		// 날짜 받아오기 위해 Date()사용
+		var year = d.getFullYear();
+		var month = d.getMonth()+1;
+		var day = d.getDate();
+		var hour = d.getHours();
+		var min = d.getMinutes();
+		var sec = d.getSeconds();
+		var star = " ";			// 별을 찍어줄지 말지에 쓰인다.
+		var no_TaxItem = 0;		// TaxFree 항목들의 총가격
+		var yes_TaxItem = 0;	// 부가세가 부여되지 않은 Tax 항목들의 총 가격
+		var total_tax;			// 총 부가세
+		// 품목 명
+		var itemname = new Array("초코파이","바나나우유","건포도","오렌지주스","초코에몽","가나파이","오예스",
+				"후렌치파이신맛","후렌치파이","인절미","쌀과자","사탕","가나초콜릿","와우껌","별난바",
+				"죠스바","뽕따","빠삐코","서주아이스바","딸기우유","베지밀A","베지밀B","츄러스","커널스팝콘",
+				"커널스팝콘불맛","스윙칩","포테토칩","키커초콜릿","파김치","서울우유");
+		// 품목 가격
+		var price = new Array(10000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,
+				2300,2400,2500,2600,2700,2800,2900,3000,3100,3200,3300,3400,3500,3600,3700,
+				3800,3900);
+		// 품목 개수
+		var num = new Array(10,200,30,40,50,6,7,8,9,5,9,8,7,6,5,4,3,2,1,2,3,4,5,6,7,8,9,4,9,8);
+		// 부가세 포함 물품인지 아닌지
+		var tax = new Array(true,true,false,true,true,true,true,true,true,false,false,true,
+				true,true,true,true,true,true,true,true,true,true,true,false,true,true,
+				false,false,true,true);
+			document.write("<TABLE border=0>");
+			document.write("<TR>");
+			document.write("<TD rowspan=3 colspan=3 valign=middle>" + "<img src=./emart.png>" + "</TD>");
+			document.write("<TD colspan=2>" + "이마트 죽전점 (031)888-1234" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=2>" + "206-86-50913 이갈수" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=2>" + "용인시 수지구 포은대로 552" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=5>" + "영수증 미지참시 교환/환불 불가(30일내)" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=5>" + "교환/환불 구매점에서 가능(결제카드지참)" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=5>" + "체크카드/신용카드 청구취소 반영은" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=5>" + "최대 3~5일 소요 (주말, 공휴일제외)" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=3>" + "[구 매]" +year+"-"+month+"-"+day+"&nbsp;"+hour+":"+min + "</TD>");
+			document.write("<TD colspan=2 align=RIGHT>" + "POS:0009-2418" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR><TD colspan=5><HR></TD></TR>");
+			document.write("<TR>");
+			document.write("<TD></TD>");
+			document.write("<TD align=CENTER>" + "상 품 명" + "</TD>");
+			document.write("<TD align=RIGHT>" + "단 가" + "</TD>");
+			document.write("<TD align=RIGHT>" + "수 량" + "</TD>");
+			document.write("<TD align=RIGHT>" + "금 액" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR><TD colspan=5><HR></TD></TR>");
+			
+			for(var i=0; i<itemname.length; i++){
+				if(tax[i] == false) {
+					star = "*";
+					no_TaxItem = no_TaxItem + price[i]*num[i];
+				} else {
+					star = " ";
+					yes_TaxItem = yes_TaxItem + price[i]*num[i];
+				}
+				document.write("<TR>");
+					document.write("<TD>" + pad(i+1, 2) + star + "</TD>");
+					document.write("<TD>" + itemname[i] + "</TD>");
+					document.write("<TD align=RIGHT>" + numberWithCommas(price[i]) + "</TD>");
+					document.write("<TD align=RIGHT>" + num[i] + "</TD>");
+					document.write("<TD align=RIGHT>" + numberWithCommas(price[i]*num[i]) + "</TD>");
+				document.write("</TR>");
+			}
+			var Tax = yes_TaxItem / 11;
+			if((Tax*10)%10 > 0)
+			total_tax = Tax + 1;
+			else
+				total_tax = Tax;
+			Price_noTax = (yes_TaxItem*10 - total_tax)/10;
+			Price_noTax = Math.floor(Price_noTax);
+			total_tax = total_tax/10;
+			total_tax = total_tax.toFixed(0);
+			if(Price_noTax - 1 < 0) {
+				Price_noTax = 0;
+				total_tax = 1;
+			}
+			document.write("<TR>");
+			document.write("<TD colspan=3 align=RIGHT>" + "(*)면&nbsp;세&nbsp;&nbsp;물&nbsp;품" + "</TD>");
+			document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(no_TaxItem) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=3 align=RIGHT>" + "과&nbsp;세&nbsp;&nbsp;물&nbsp;품" + "</TD>");
+			document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(Price_noTax) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=3 align=RIGHT>" + "부&nbsp;&nbsp;&nbsp;가&nbsp;&nbsp;&nbsp;세" + "</TD>");
+			document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(total_tax) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=3 align=RIGHT>" + "합&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;계" + "</TD>");
+			document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(no_TaxItem + yes_TaxItem) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=3 align=LEFT>" + "결&nbsp;제&nbsp;대&nbsp;상&nbsp;금&nbsp;액" + "</TD>");
+			document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(no_TaxItem + yes_TaxItem) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR><TD colspan=5><HR></TD></TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=3 align=LEFT>" + "0024&nbsp;하&nbsp;&nbsp;나" + "</TD>");
+			document.write("<TD colspan=2 align=RIGHT>" + "5417**8890/07850246" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=3 align=LEFT>" + "카드결제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일시불" + "</TD>");
+			document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(no_TaxItem + yes_TaxItem) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR><TD colspan=5><HR></TD></TR>");
+			document.write("<TR>");
+			document.write("<TD colspan=3 align=LEFT>" + "권준&nbsp;고객님의&nbsp;포인트&nbsp;현황입니다." + "</TD>");
+			document.write("</TR>");
+			document.write("</TABLE>");
+</script>
+</body>
+
+</html>

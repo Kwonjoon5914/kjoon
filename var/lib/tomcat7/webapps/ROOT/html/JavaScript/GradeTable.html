@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="UTF-8">
+kopo01
+<head>
+<h2 align=center>성적집계표</h2>
+    <style>
+        body{
+            font-family:'d2coding'; /*d2coding으로 해놨으니 d2coding으로*/
+            font-size:0.7em;
+        }
+    </style>
+    <script>
+      //선언
+      //누적 페이지 점수 합계
+      var sumkor = 0; 
+      var sumeng = 0;
+      var summat = 0;
+      var sumsum = 0;//세 과목 합계
+      var sumave = 0;//세 과목 평균
+   
+        //현재 페이지 점수 합계
+      var page_sumkor = 0;
+      var page_sumeng = 0;
+      var page_summat = 0;
+      var page_sumsum = 0;
+      var page_sumave = 0;
+      
+      var iPerson = 100;//전체 사람수
+      var pagePer =30;//한페이지당 출력할 사람수
+      var pageFirstPer=0;//페이지당 출력할 첫번째 사람의 번호
+      var pageLastPer=0;//페이지당 출력할 마지막 사람의 번호
+      var page_num =1;//페이지번호
+      var totalPageNum =0;//출력할 전체 페이지 수
+        
+        //숫자 앞에 0채우기
+        function pad(n, width) {
+            n = n + '';
+            return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+        }
+
+        //데이터 만들기
+        var oneRec = new Array();//사람들의 점수
+        function dataSet(){
+            for ( i=0 ; i < iPerson ; i++) {
+            var arr = new Array();//한사람의 점수들
+            var name = "홍길동"+pad(i+1,3);//이름
+            var kor = Math.floor(Math.random()*100); //국어점수 //Math.floor 가장 큰 정수나옴
+            var eng = Math.floor(Math.random()*100); //영어점수
+            var mat = Math.floor(Math.random()*100); //수학점수
+            var sumScore = (kor+eng+mat);
+            var avgScore = ((kor+eng+mat)/3).toFixed(2);//소수점 2째자리까지 반올림
+                
+                arr[0]=name;
+                arr[1]=kor;
+                arr[2]=eng;
+                arr[3]=mat;
+                arr[4]=sumScore;
+                arr[5]=avgScore;
+                oneRec.push(arr);//만든 데이터들 배열에 저장
+            }   
+        }
+		    //날짜출력 준비
+        var d = new Date();
+        yy=d.getFullYear(); mm=(d.getMonth()+1); dd=d.getDate();
+        hh=d.getHours(); mi=d.getMinutes(); ss=d.getSeconds();
+		
+		var d3 = new Date(); 
+		var currentDate = d3.getFullYear() + ". " + ( d3.getMonth() + 1 ) + ". " + d3.getDate() + ""; 
+		var currentTime = d3.getHours() + ":" + d3.getMinutes() + ":" + d3.getSeconds(); 
+		var result = document.getElementById("time-result");
+		result.innerHTML = "출 력 일 자 : " + currentDate + "   " + currentTime;
+	        //헤더출력 
+        function headerPrint() {
+            document.write("<table border=0>");
+            document.write("<tr><td colspan=7 align=center>성적집계표</td></tr>");
+            document.write("<tr>");
+            document.write("<td colspan=3>PAGE : "+page_num+"</td>");
+            document.write("<td colspan=4 align=right>출력일자 : "+
+                yy+"."+pad(mm,2)+"."+dd+" "+pad(hh,2)+":"+pad(mi,2)+":"+pad(ss,2)+"</td>")
+            document.write("</tr>");
+            document.write("<tr><td colspan=7><hr></td></tr>");//밑줄 그리기
+            document.write("<tr>");
+            document.write("<td>번호</td><td>이름</td><td align=right>국어</td>");
+            document.write("<td align=right>수학</td><td align=right>영어</td>");
+            document.write("<td align=right>합계</td>");
+            document.write("<td align=right>평균</td>");
+            document.write("</tr>");
+            document.write("<tr><td colspan=7><hr></td></tr>");//밑줄 그리기
+        
+        }
+
+        //내용출력
+        function bodyPrint(i) {//for문 안에 들어가기 때문에 인수 받음
+            document.write("<tr>");
+            document.write("<td>"+pad(i,2)+"</td>");//번호 출력
+            document.write("<td>"+oneRec[i-1][0]+"</td>");//이름 출력
+                for (let j = 1; j < 6; j++) {//점수들 출력
+                    document.write("<td align=right>"+oneRec[i-1][j]+"</td>");
+                }
+            document.write("</tr>");
+
+         page_sumkor+=oneRec[i-1][1];//페이지에 출력된 만큼 합계
+         page_sumeng+=oneRec[i-1][2];
+         page_summat+=oneRec[i-1][3];
+         page_sumsum+=oneRec[i-1][4];
+         page_sumave+=oneRec[i-1][5];
+
+         sumkor+=oneRec[i-1][1];//누적분, 페이지 관계없이 합계
+         sumeng+=oneRec[i-1][2];
+         summat+=oneRec[i-1][3];
+         sumsum+=oneRec[i-1][4];
+         sumave+=oneRec[i-1][5];
+
+        }
+        
+        //꼬리출력
+        function tailPrint() {
+        document.write("<tr><td colspan=7><hr></td></tr>");//밑줄 그리기    
+        document.write("<tr><td colspan=7 >현재 페이지</td></tr>");
+        document.write("<tr>");
+        document.write("<td colspan=2>합계</td>");
+        document.write("<td align=right>"+page_sumkor+"</td>"+"<td align=right>"+page_sumeng+"</td>");
+        document.write("<td align=right>"+page_summat+"</td>"+"<td align=right>"+page_sumsum+"</td>");
+        document.write("<td align=right>"+(page_sumsum/3).toFixed(2)+"</td>");
+        document.write("</tr>");
+        document.write("<tr>");
+        document.write("<td colspan=2>평균</td>");//페이지에 출력된 사람 수 만큼으로 나눈다
+        document.write("<td align=right>"+(page_sumkor/(pageLastPer-pageFirstPer+1)).toFixed(2)+"</td>");
+        document.write("<td align=right>"+(page_sumeng/(pageLastPer-pageFirstPer+1)).toFixed(2)+"</td>");
+        document.write("<td align=right>"+(page_summat/(pageLastPer-pageFirstPer+1)).toFixed(2)+"</td>");
+        document.write("<td align=right>"+(page_sumsum/(pageLastPer-pageFirstPer+1)).toFixed(2)+"</td>");
+        document.write("<td align=right>"+((page_sumsum/(pageLastPer-pageFirstPer+1))/3).toFixed(2)+"</td>");
+        document.write("<tr><td colspan=7><hr></td></tr>");//밑줄 그리기
+        document.write("</tr>");
+        
+        page_sumkor=0;page_sumeng=0;page_summat=0;page_sumsum=0;page_sumave=0;//페이지별 계산을 위한 초기화
+        
+        document.write("<tr><td colspan=7 >누적 페이지</td></tr>");
+        document.write("<tr>");
+        document.write("<td colspan=2>합계</td>");
+        document.write("<td align=right>"+sumkor+"</td>"+"<td align=right>"+sumeng+"</td>");
+        document.write("<td align=right>"+summat+"</td>"+"<td align=right>"+sumsum+"</td>");
+        document.write("<td align=right>"+(sumsum/3).toFixed(2)+"</td>");
+        document.write("</tr>");
+        document.write("<tr>");
+        document.write("<td colspan=2>평균</td>");//여태까지 출력된 사람 수 만큼 나눈다
+        document.write("<td align=right>"+(sumkor/pageLastPer).toFixed(2)+"</td>");
+        document.write("<td align=right>"+(sumeng/pageLastPer).toFixed(2)+"</td>");
+        document.write("<td align=right>"+(summat/pageLastPer).toFixed(2)+"</td>");
+        document.write("<td align=right>"+(sumsum/pageLastPer).toFixed(2)+"</td>");
+        document.write("<td align=right>"+((sumsum/pageLastPer)/3).toFixed(2)+"</td>");
+        document.write("<tr><td colspan=7><hr></td></tr>");//밑줄 그리기
+        document.write("<tr><td colspan=7 height=25></td></tr>");//칸 띄기
+        document.write("</tr>");
+        document.write("</table>");
+        }
+        
+    </script>
+<table width=300>
+	<tr>
+		<td width=150></td>
+
+		<td width=230>
+			<Hn id="time-result"></Hn>
+			<SCRIPT type = "text/javascript">
+				var d = new Date(); 
+				var currentDate = d.getFullYear() + ". " + ( d.getMonth() + 1 ) + ". " + d.getDate() + ""; 
+				var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(); 
+				var result = document.getElementById("time-result"); 
+				result.innerHTML = "출력일자 : " + currentDate + "   " + currentTime; 
+			</script> 
+		</td>
+	</tr>
+</table>
+</head>
+<body>
+    <script>
+        dataSet();//데이타 만들기 실행
+       
+       //총 사람수가 한 페이지당 나올 사람 수로 나누어 떨어지지 않으면 
+       //나머지 사람을 출력할 페이지 하나 더 필요
+       //따라서 총 출력할 페이지 수를 구한다
+        if (iPerson%pagePer==0) {
+            totalPageNum=parseInt(iPerson/pagePer);
+        }else {
+            totalPageNum=parseInt(iPerson/pagePer+1);
+        }
+
+        for (var i = 0; i < totalPageNum; i++) {
+            headerPrint(); //헤더출력
+
+            pageFirstPer= (i*pagePer)+1;//페이지당 첫번째 사람 번호 계산
+            pageLastPer = pageFirstPer+pagePer-1;//페이지당 마지막 사람 번호 계산
+            if (pageLastPer>iPerson) { pageLastPer = iPerson; } //출력할 나머지 사람이 있을때 pageLastPer
+
+            for (var k = pageFirstPer; k <= pageLastPer; k++) {
+                bodyPrint(k);//바디 출력
+            }
+
+            tailPrint();//꼬리출력
+            page_num++;
+        }
+        
+    </script>
+</body>
+</html>

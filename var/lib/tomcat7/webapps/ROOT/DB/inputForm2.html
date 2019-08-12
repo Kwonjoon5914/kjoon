@@ -1,0 +1,69 @@
+<html>
+	<head>
+	<title>inputForm2</title>
+	<meta charset="UTF-8">
+<script type="text/javascript">
+function validate(){
+      var re_name =  /^[0-9]*$/; //이름 한글,숫자인지 검사할 규칙
+      var searchid = document.getElementById("searchid");      
+      
+      if(insert.searchid.value == ""){ //이름이 비어있을 때
+         alert("학번을 입력해 주세요.")
+         insert.searchid.focus();
+         return false;
+      }
+
+      if(!check(re_name, searchid, "학번은 숫자만 허용합니다.")){
+         return false;
+      }
+   }
+   function check(re, what, message) {
+          if(re.test(what.value)) {
+              return true;
+          }
+          alert(message);
+          what.value = "";
+          what.focus();
+          //return false;
+      }
+
+</script>
+	</head>
+	<h1>성적 조회후 정정/삭제</h1>
+		<form method="post" name="insert" action="showREC.jsp" onsubmit='return validate();'>
+	<tr width=600 align=center> 
+		<td>조회할 학번</td>
+		<td width=350>
+		<input type="number" id="searchid" name="searchid"/>
+		</td>
+		<input type="submit" value="조회">
+	</tr>
+	<br>
+	<br>
+		<table cellspacing=1 width=450 border=1>
+		<tr>
+			<td width=100><p align=center>이름</p></td>
+			<td width=350><p align=center><input type="text" name="username" readonly="readonly"></p></td>
+		</tr>
+		<tr>
+			<td width=100><p align=center>학번</p></td>
+			<td width=350><p align=center></p></td>
+		</tr>
+		<tr>
+			<label>
+			<td width=100><p align=center>국어</p></td>
+			<td width=350><p align=center><input type="number" name="korscore" readonly="readonly" min="0" max="100"></p></td>
+			</label>
+		</tr>
+		<tr>
+			<td width=100><p align=center>영어</p></td>
+			<td width=350><p align=center><input type="number" name="engscore" readonly="readonly" min="0" max="100"></p></td>
+		</tr>
+		<tr>
+			<td width=100><p align=center>수학</p></td>
+			<td width=350><p align=center><input type="number" name="matscore" readonly="readonly" min="0" max="100"></p></td>
+		</tr>
+		</table>
+	</form>
+</BODY>
+</html>

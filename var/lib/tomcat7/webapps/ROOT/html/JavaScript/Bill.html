@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="UTF-8">
+kopo01
+<head>
+
+	<SCRIPT>
+	var star = " ";
+	var no_TaxItem;
+	var yes_TaxItem;
+	var Price_noTax;
+	var total_tax;
+	
+	var itemname = new Array("초코파이","바나나우유","건포도","오렌지주스","초코에몽","가나파이","오예스",
+				"후렌치파이신맛","후렌치파이","인절미","쌀과자","사탕","가나초콜릿","와우껌","별난바",
+				"죠스바","뽕따","빠삐코","서주아이스바","딸기우유","베지밀A","베지밀B","츄러스","커널스팝콘",
+				"커널스팝콘불맛","스윙칩","포테토칩","키커초콜릿","파김치","서울우유");
+				
+	var price = new Array(10000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,
+				2300,2400,2500,2600,2700,2800,2900,3000,3100,3200,3300,3400,3500,3600,3700,
+				3800,3900);
+				
+		// 품목 개수
+	var num = new Array(10,2000,30000,400,50000,6,7,8,9,5,9,8,7,6,5,4,3,2,1,2,3,4,5,6,7,8,9,4,9,8);
+		// 부가세 포함 물품인지 아닌지
+		var tax = new Array(true,true,false,true,true,true,true,true,true,false,false,true,
+				true,true,true,true,true,true,true,true,true,true,true,false,true,true,
+				false,false,true,true);
+							for(var i=0; i<itemname.length; i++){
+				if(tax[i] == false) {
+					star = "*";
+					no_TaxItem = no_TaxItem + price[i]*num[i];
+				} else {
+					star = " ";
+					yes_TaxItem = yes_TaxItem + price[i]*num[i];
+				}
+				document.write("<TR>");
+					document.write("<TD>" + pad(i+1, 2) + star + "</TD>");
+					document.write("<TD>" + itemname[i] + "</TD>");
+					document.write("<TD align=RIGHT>" + numberWithCommas(price[i]) + "</TD>");
+					document.write("<TD align=RIGHT>" + num[i] + "</TD>");
+					document.write("<TD align=RIGHT>" + numberWithCommas(price[i]*num[i]) + "</TD>");
+				document.write("</TR>");
+			}
+			var Tax = yes_TaxItem / 11;
+			if((Tax*10)%10 > 0)
+			total_tax = Tax + 1;
+			else
+				total_tax = Tax;
+			Price_noTax = (yes_TaxItem*10 - total_tax)/10;
+			total_tax = total_tax/10;
+			if(Price_noTax - 1 < 0) {
+				Price_noTax = 0;
+				total_tax = 1;
+			}
+			document.write("<TR>");
+				document.write("<TD colspan=3 align=RIGHT>" + "(*)면&nbsp;세&nbsp;&nbsp;물&nbsp;품" + "</TD>");
+				document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(no_TaxItem) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+				document.write("<TD colspan=3 align=RIGHT>" + "과&nbsp;세&nbsp;&nbsp;물&nbsp;품" + "</TD>");
+				document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(Price_noTax) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+				document.write("<TD colspan=3 align=RIGHT>" + "부&nbsp;&nbsp;&nbsp;가&nbsp;&nbsp;&nbsp;세" + "</TD>");
+				document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(total_tax) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+				document.write("<TD colspan=3 align=RIGHT>" + "합&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;계" + "</TD>");
+				document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(no_TaxItem + yes_TaxItem) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+				document.write("<TD colspan=3 align=LEFT>" + "결&nbsp;제&nbsp;대&nbsp;상&nbsp;금&nbsp;액" + "</TD>");
+				document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(no_TaxItem + yes_TaxItem) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR><TD colspan=5><HR></TD></TR>");
+			document.write("<TR>");
+				document.write("<TD colspan=3 align=LEFT>" + "0024&nbsp;하&nbsp;&nbsp;나" + "</TD>");
+				document.write("<TD colspan=2 align=RIGHT>" + "5417**8890/07850246" + "</TD>");
+			document.write("</TR>");
+			document.write("<TR>");
+				document.write("<TD colspan=3 align=LEFT>" + "카드결제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일시불" + "</TD>");
+				document.write("<TD colspan=2 align=RIGHT>" + numberWithCommas(no_TaxItem + yes_TaxItem) + "</TD>");
+			document.write("</TR>");
+			document.write("<TR><TD colspan=5><HR></TD></TR>");
+			document.write("<TR>");
+				document.write("<TD colspan=3 align=LEFT>" + "황*혁&nbsp;고객님의&nbsp;포인트&nbsp;현황입니다." + "</TD>");
+			document.write("</TR>");
+		document.write("</TABLE>");
+	</SCRIPT>
+</head>
+<body>
+<table>
+	<tr align=center>
+		<td rowspan="3", colspan="3", width="33%"><FONT SIZE="6"><STRONG>E-MART</STRONG></td>	<!--가운데 정렬 밝은회색배경 노란색글자의 표 상단부-->
+		<td colspan="1", align=left>이마트 죽전점</td>
+		<td align=left>(031)888-1234</td>
+	</tr>
+	<tr>
+		<td colspan="1", width="37%">206-86-50918</td>
+		<td colspan="1", width="100%">이갑수</td>
+		
+	</tr>
+	<tr>
+		<td colspan="2">용인시 수지구 포은대로 552</td>
+	</tr>
+	<tr>
+		<td colspan="4">영수증 미지참시 교환/환불 불가(30일내)</td>
+	</tr>
+	<tr>
+		<td colspan="4">교환/환불 구매점에서 가능(결제카드지참)</td>
+	</tr>
+	<tr>
+		<td colspan="4">체크카드/신용카드 청구취소 반영은</td>
+	</tr>
+	<tr>
+		<td colspan="4">최대 3~5일 소요 (주말, 공휴일 제외)</td>
+	</tr>
+	<P>
+	<tr>
+		<td colspan="4">
+			<Hn id="time-result"></Hn>
+			<SCRIPT type = "text/javascript">
+				var d = new Date(); 
+				var currentDate = d.getFullYear() + "-" + ( d.getMonth() + 1 ) + "-" + d.getDate() + ""; 
+				var currentTime = d.getHours() + ":" + d.getMinutes(); 
+				var result = document.getElementById("time-result"); 
+				result.innerHTML = "[  구   매  ] " + currentDate + "   " + currentTime; 
+			</script> 
+		</td>
+		<td align = right>POS : 0009-2418</td>
+	</tr>
+</table>
+<HR width=500px, align=left>
+<hr style="margin-top: -5px; margin-bottom: -10px; width:500px;" align=left>
+<h4><pre>       상  품  명            단    가           수  량           금   액</pre></h4>
+<HR style="margin-top: -10px;" width=500px, align=left>
+<hr style="margin-top: -5px; width:500px;" align=left>
+<table width="506">
+	<tr align=center>
+		<td width="20">01</td>
+		<td width="100">초코파이</td>
+		<td width="100">600원</td>
+		<td width="90">8</td>
+		<td width="90">4,800원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">02</td>
+		<td width="100">바나나우유</td>
+		<td width="100">1,000원</td>
+		<td width="90">2</td>
+		<td width="90">2,000원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">03</td>
+		<td width="100">오렌지주스</td>
+		<td width="100">3,600원</td>
+		<td width="90">4</td>
+		<td width="90">14,400원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">04</td>
+		<td width="100">후렌치파이</td>
+		<td width="100">3,500원</td>
+		<td width="90">4</td>
+		<td width="90">14,000원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">05</td>
+		<td width="100">가나초콜릿</td>
+		<td width="100">1,300원</td>
+		<td width="90">3</td>
+		<td width="90">3,900원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">06</td>
+		<td width="100">사랑방사탕</td>
+		<td width="100">4,600원</td>
+		<td width="90">10</td>
+		<td width="90">46,000원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">07</td>
+		<td width="100">서주아이스바</td>
+		<td width="100">690원</td>
+		<td width="90">8</td>
+		<td width="90">7,200원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">08</td>
+		<td width="100">별난바</td>
+		<td width="100">800원</td>
+		<td width="90">20</td>
+		<td width="90">16,000원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">09</td>
+		<td width="100">커널스팝콘</td>
+		<td width="100">1,500원</td>
+		<td width="90">6</td>
+		<td width="90">9,000원</td>
+	</tr>
+	<tr align=center>
+		<td width="20">10</td>
+		<td width="100">포테토칩</td>
+		<td width="100">1,800원</td>
+		<td width="90">10</td>
+		<td width="90">18,000원</td>
+	</tr>
+	<tr>
+	<td height="20"></td>
+	</tr>
+	<tr align=center>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><B>합&nbsp;&nbsp;&nbsp;&nbsp;계<B></td>
+		<td><B>135,300원<B></td>
+	</tr>
+	<tr align=left>
+		<td colspan="3"><pre><B>결   제   대   상   금   액<B></pre></td>
+		<td></td>
+		<td align=center><B>135,300원<B></td>
+	</tr>
+
+</table>
+<HR width=505, align=left>
+<hr style="margin-top: -5px; width:505px;" align=left>
+<table width="506">
+	<tr>
+		<td>0024&nbsp;&nbsp;&nbsp;하&nbsp;&nbsp;나</td>
+		<td align=right>5417**8890/07850246</td>
+	</tr>
+	<tr>
+		<td>카드결제</td>
+		<td align=right>일시불 / 135,300</td>
+	</tr>
+</table>
+<hr width=505, align=left>
+<hr style="margin-top: -5px; width:505px;" align=left>
+<!-<div style="border:1px solid #000000; height:5px; border-left:0px; border-right:0px"></div>
+</body>
+
+</html>

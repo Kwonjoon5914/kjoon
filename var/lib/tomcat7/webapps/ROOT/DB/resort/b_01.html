@@ -1,0 +1,47 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+<title>합리적인 룸</title>
+<meta charset="UTF-8">
+</head>
+<body BACKGROUND="image/background.jpg">
+<center>
+<br><h2>찾아오는 길을 안내해 드립니다.</h2>
+<!--
+	* 카카오맵 - 약도서비스
+	* 한 페이지 내에 약도를 2개 이상 넣을 경우에는
+	* 약도의 수 만큼 소스를 새로 생성, 삽입해야 합니다.
+-->
+<!-- 1. 약도 노드 -->
+<div align=center id="daumRoughmapContainer1564113111236" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+<!-- 2. 설치 스크립트 -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+<!-- 3. 실행 스크립트 -->
+<script charset="UTF-8">
+	new daum.roughmap.Lander({
+		"timestamp" : "1564113111236",
+		"key" : "ui7r",
+		"mapWidth" : "700",
+		"mapHeight" : "460"
+	}).render();
+</script>
+</center>
+	<hr/>
+    <!-- 푸터 들어가는 부분 -->         
+    <div>
+		<p class="text-center">
+        <small><strong>경기도 성남시 분당구 황새울로 329번길 5</strong></small><br>
+        <small>대표 : 권준 ㆍ 주소 :  경기도 성남시 분당구 황새울로 329번길 5 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 064-123-1234</small><br>
+        <small>Copyrightⓒ test.com All rights reserved.</small>
+        </p>
+    </div>
+	<!--// 푸터 들어가는 부분 -->
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="UTF-8">
+kopo01
+<head>
+<h2 align=center>성적집계표</h2>
+<SCRIPT lANGUAGE="JavaScript">
+
+</SCRIPT>
+<table width=600>
+	<tr>
+		<td width=300></td>
+
+		<td width=300>
+			<Hn id="time-result"></Hn>
+			<SCRIPT type = "text/javascript">
+				var d = new Date(); 
+				var currentDate = d.getFullYear() + ". " + ( d.getMonth() + 1 ) + ". " + d.getDate() + ""; 
+				var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(); 
+				var result = document.getElementById("time-result"); 
+				result.innerHTML = "출 력 일 자 : " + currentDate + "   " + currentTime; 
+			</script> 
+		</td>
+	</tr>
+</table>
+<HR width=600px, align=left>
+<hr style="margin-top: -5px; margin-bottom: -10px; width:600px;" align=left>
+<h4><pre> 번호       이름           국어       영어       수학       총점         평균</pre></h4>
+<HR style="margin-top: -10px;" width=600px, align=left>
+<hr style="margin-top: -5px; width:600px;" align=left>
+<table width=535>
+	<tr align=center>
+		<td width=20>001</td>
+		<td width=100>홍길01</td>
+		<td width=60>100</td>
+		<td width=60>100</td>
+		<td width=60>100</td>
+		<td width=60>300</td>
+		<td width=70>100</td>
+	</tr>
+	<tr align=center>
+		<td width=20>002</td>
+		<td width=100>홍길02</td>
+		<td width=60>95</td>
+		<td width=60>95</td>
+		<td width=60>95</td>
+		<td width=60>285</td>
+		<td width=70>95</td>
+	</tr>
+	<tr align=center>
+		<td width=20>003</td>
+		<td width=100>홍길03</td>
+		<td width=60>100</td>
+		<td width=60>100</td>
+		<td width=60>100</td>
+		<td width=60>300</td>
+		<td width=70>100</td>
+	</tr>
+	<tr align=center>
+		<td width=20>004</td>
+		<td width=100>홍길04</td>
+		<td width=60>100</td>
+		<td width=60>100</td>
+		<td width=60>100</td>
+		<td width=60>300</td>
+		<td width=70>100</td>
+	</tr>
+	<tr align=center>
+		<td width=20>005</td>
+		<td width=100>홍길05</td>
+		<td width=60>100</td>
+		<td width=60>100</td>
+		<td width=60>100</td>
+		<td width=60>300</td>
+		<td width=70>100</td>
+	</tr>
+</table>
+<HR width=600px, align=left>
+<hr style="margin-top: -5px; width:600px;" align=left>
+<table width=535>
+	<tr align=center>
+		<td width=30>합계</td>
+		<td width=100></td>
+		<td width=60>495</td>
+		<td width=60>495</td>
+		<td width=60>495</td>
+		<td width=60>1485</td>
+		<td width=70>495</td>
+	</tr>
+	<tr align=center>
+		<td width=30>평균</td>
+		<td width=100></td>
+		<td width=60>99</td>
+		<td width=60>99</td>
+		<td width=60>99</td>
+		<td width=60>297</td>
+		<td width=70>99</td>
+	</tr>
+</table>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+kopo01
+<head>
+<SCRIPT lANGUAGE=javascript>
+
+	var aaa = 'test';
+	class Grade {
+		poly1 = 10;
+		poly2 = 6;
+		poly3 = 80;
+	
+	show() {
+		console.log(this.poly1, this.poly2, this.poly3);
+		}
+	show1 = function() {
+		console.log(this.poly1, this.poly2, this.poly3);
+		}
+	show2 = () => {
+		console.log(this.poly1, this.poly2, this.poly3);
+		}
+	}
+	var grades_test = new Grade();
+	grades_test.show()
+	console.log(grades_test.show);
+	console.log(grades_test);
+
+var grades1 = {'poly1': 10, 'poly2' : 6, 'poly3' : 80};
+//내용을 가지고있는 객체를 선언
+var grades2 = {};
+grades2['poly1'] = 10;
+grades2['poly2'] = 6;
+grades2['poly3'] = 80;
+
+var grades3 = new Object();
+grades3['poly1'] = 10;
+grades3['poly2'] = 6;
+grades3['poly3'] = 80;
+
+console.log(grades1['poly1']);
+
+for(key in grades1) {
+	document.write("key : "+key+" value : "+grades1[key]+"<br />");
+}
+
+//for(obj in grades1) {
+	//document.write("key : "+key+" value : "+grades1[key]+"<br />");
+	//}
+
+var grades4 = {
+	'list': {'poly1' : 10, 'poly2' : 6, 'poly3' : 80},
+	'show' : function(){
+		for(var name in this.list){
+			document.write(name+':'+this.list[name]+"<br />");
+		}
+	}
+};
+grades4.show();
+</SCRIPT>
+</head>
+<body>
+</body>
+</html>

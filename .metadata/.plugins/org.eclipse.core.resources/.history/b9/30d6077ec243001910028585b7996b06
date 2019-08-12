@@ -1,0 +1,19 @@
+package 반복문;
+
+import java.util.Scanner;
+
+public class 달력과제190311 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
+		int year = 0, days = 0, dayOfWeek = 0, month = 0, day = 0;
+		System.out.println("원하는 연도를 입력하세요 : ");
+		year = in.nextInt();
+		System.out.println("원하는 월? ");
+		month = in.nextInt();
+		System.out.println("원하는 일? ");
+		day = in.nextInt();
+	}
+
+}

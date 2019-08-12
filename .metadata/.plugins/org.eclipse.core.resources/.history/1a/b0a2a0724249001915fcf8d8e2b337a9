@@ -1,0 +1,9 @@
+package ¾²·¹µå;
+
+public class processTwo {
+	public void run() {
+		for(int i=0;i<100;i++) {
+			System.out.println("One : " + i);
+		}
+	}
+}

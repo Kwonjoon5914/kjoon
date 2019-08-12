@@ -1,0 +1,67 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class 과제2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			Scanner in = new Scanner(System.in);
+			String student_name, english_score, math_score, total_score = 1, average_score = 1;
+			Class.forName("com.mysql.cj.jdbc.Driver"); //드라이버
+			
+		    Connection conn = DriverManager.getConnection(
+		    		"jdbc:mysql://localhost/student?useSSL=false&serverTimezone=UTC", 
+		    												"root" , "rnjs4288");//접속할 DB서버,DB에 접속할 사용자 이름
+		    																		//사용자의 비밀번호
+		    System.out.println("이름 입력(종료는 end) : ");
+		    student_name = in.nextLine();
+		    System.out.println("영어 점수 : ");
+		    english_score = in.nextLine();
+		    System.out.println("수학 점수 : ");
+		    math_score = in.nextLine();
+		    
+		    Statement stmt = conn.createStatement();
+		    
+		    stmt.execute("INSERT INTO test_score (student_name, english_score, math_score, total_score, average_score) " +
+		    			"VALUES ('" + student_name + 
+		    			"', '" + math_score + 
+		    			"', '" + english_score +
+		    			"', '" + total_score +
+		    			"', '" + average_score +
+		    			"')");
+		    
+		    ResultSet rset = stmt.executeQuery("SELECT * FROM `test_score`");  //sql문을 전달
+		    
+		    System.out.println("이름     영어     수학      총점      평균");
+		    
+		    while (rset.next()) { 
+		          System.out.println(rset.getInt(1) + " " + 
+					        		  rset.getString(2) + " " + 
+					        		  rset.getInt(3) + " " + 
+					        		  rset.getString(4) + " " +
+					        		  rset.getInt(5));
+		    }
+//		    while (rset.next()) { 
+//		    	String Student_name = rset.getString("이름");
+//		    	String Math_score = rset.getString("수학");
+//		    	String English_score = rset.getString("영어");
+//		    	String Total_score = rset.getString("총점");
+//		    	String Average_score = rset.getString("평균");
+//		        System.out.println("student_name: " + Student_name + "\nMath_score: " + math_score + "\nEnglish_score: "
+//		        		+ english_score);
+//		        System.out.println("Total_score: " + total_score + "\nAverage_score: " + average_score + "\n");
+//		        		} 
+
+//			}
+		    rset.close(); 
+		    stmt.close(); 
+		    conn.close(); 
+		}catch(Exception e) { //예외 발생 시 처리부분
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}

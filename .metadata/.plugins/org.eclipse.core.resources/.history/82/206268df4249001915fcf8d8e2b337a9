@@ -1,0 +1,16 @@
+package ¾²·¹µå;
+
+public class processOne extends Thread {
+	Thread t;
+
+	processOne() {
+		t = new Thread(this);
+		t.start();
+	}
+
+	public void run() {
+		for (int i = 0; i < 100; i++) {
+			System.out.println("One : " + i);
+		}
+	}
+}

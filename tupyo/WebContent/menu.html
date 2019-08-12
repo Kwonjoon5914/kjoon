@@ -1,0 +1,32 @@
+<html>
+	<head>
+	<title>Menu</title>
+	<meta charset="UTF-8">
+	<script language="javascript">
+	function javascript1(){
+    document.getElementById("testDiv1").style.backgroundColor = "#FAFF00";  //RGB코드        
+	document.getElementById("testDiv2").style.backgroundColor = "#FFFFFF";  //RGB코드
+	document.getElementById("testDiv3").style.backgroundColor = "#FFFFFF";  //RGB코드
+	}
+	function javascript2(){
+	document.getElementById("testDiv1").style.backgroundColor = "#FFFFFF";  //RGB코드
+    document.getElementById("testDiv2").style.backgroundColor = "#FAFF00";  //RGB코드
+	document.getElementById("testDiv3").style.backgroundColor = "#FFFFFF";  //RGB코드
+	}
+	function javascript3(){
+    document.getElementById("testDiv1").style.backgroundColor = "#FFFFFF";  //RGB코드
+	document.getElementById("testDiv2").style.backgroundColor = "#FFFFFF";  //RGB코드
+    document.getElementById("testDiv3").style.backgroundColor = "#FAFF00";  //RGB코드        
+	}
+	</script>
+	</head>
+<body>
+<table border = 1>
+	<tr>
+		<td id="testDiv1" name="testDiv1"><a href="register.jsp" target="main" onclick=javascript1()><h1>후보등록</h1></a></td>
+		<td id="testDiv2" name="testDiv2"><a href="vote.jsp" target="main" onclick=javascript2()><h1>투표</h1></a></td>
+		<td id="testDiv3" name="testDiv3"><a href="result.jsp" target="main" onclick=javascript3()><h1>개표결과</h1></a></td>
+	</tr>
+</table>
+</body>
+</html>

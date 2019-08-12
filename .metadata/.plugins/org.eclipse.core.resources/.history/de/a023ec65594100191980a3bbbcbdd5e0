@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class 에버랜드티켓구매 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
+		int a, a1, a2, a3;
+		int inputData, age, b1, b2;
+		// 권종입력
+		System.out.println("권종을 선택하세요.\n1.주간권\n2.야간권\n");
+		a = in.nextInt();
+		if(a == 1) {
+			a1 = 54000;
+		} else if(a == 2) {
+			a2 = 45000;
+		}
+		// 주민번호 입력
+		System.out.println("주민번호 앞자리를 입력하세요.");
+		inputData = in.nextInt();
+		inputData = inputData / 10000;
+		age = 2019 - (inputData + 1900) + 1;
+		if(age >= 14 && age <= 19) {
+			b1 = 46000; 
+			int x = 1;
+			int y;
+			y = (age >= 14 && age <= 19) ?  : x + 20;
+			System.out.println(x);
+			System.out.println(y);
+		} else {
+					}
+		// 갯수 입력
+		System.out.println("몇 개를 주문하시겠습니까?");
+		a1 = in.nextInt();
+		// 우대사항 선택
+		System.out.println("우대사항을 선택하세요.\n 1.없음\n, 2.장애인\n, 3.국가유공자\n, 4.다자녀\n, 5.임산부");
+		a1 = in.nextInt();
+		System.out.printf("가격은 %d 입니다. 감사합니다.");
+		in.close();
+	}
+}

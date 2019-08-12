@@ -1,0 +1,18 @@
+package 반복문;
+
+public class for루프 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		for(int i=1;i<8;i++) {
+			System.out.println(i);
+		for(int j=8;j<15;j++) {
+			System.out.println(j);
+		for(int k=15;k<22;k++) {
+			System.out.println(k);
+		}
+		}
+		}
+	}
+
+}

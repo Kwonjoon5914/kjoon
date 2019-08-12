@@ -1,0 +1,65 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class 과제2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			Scanner in = new Scanner(System.in);
+			String Student_name = "";
+			int English_score=0; int Math_score=0;
+			int Total_score=0; int Average_score=0;
+			int Count=0;
+			Class.forName("com.mysql.cj.jdbc.Driver"); //드라이버
+			
+		    Connection conn = DriverManager.getConnection(
+		    		"jdbc:mysql://localhost/student?useSSL=false&serverTimezone=UTC", 
+		    												"root" , "rnjs4288");//접속할 DB서버,DB에 접속할 사용자 이름
+		    																		//사용자의 비밀번호
+		    System.out.println("이름 입력(종료는 end) : ");
+		    Student_name = in.nextLine();
+		    System.out.println("영어 점수 : ");
+		    English_score = in.nextInt();
+		    System.out.println("수학 점수 : ");
+		    Math_score = in.nextInt();
+		    
+
+		    Total_score = English_score + Math_score;
+		    Average_score = Total_score/2;
+		    
+		    Statement stmt = conn.createStatement();
+		    
+		    stmt.execute("INSERT INTO test_score (student_name, english_score, math_score, total_score, average_score) " +
+		    			"VALUES ('" + Student_name + 
+		    			"', '" + Math_score + 
+		    			"', '" + English_score +
+		    			"', '" + Total_score +
+		    			"', '" + Average_score +
+		    			"')");
+		    
+		    System.out.println("이름     영어     수학      총점      평균");
+		    
+		    ResultSet rset = stmt.executeQuery("SELECT * FROM `test_score`");  //sql문을 전달
+		    
+		    
+		    while (rset.next()) { 
+		          System.out.println(rset.getString(1) + " " + 
+					        		  rset.getInt(2) + " " + 
+					        		  rset.getInt(3) + " " + 
+					        		  rset.getInt(4) + " " +
+					        		  rset.getInt(5));
+		          Count++;
+		    } 
+		    
+		    rset.close(); 
+		    stmt.close(); 
+		    conn.close(); 
+		}catch(Exception e) { //예외 발생 시 처리부분
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}

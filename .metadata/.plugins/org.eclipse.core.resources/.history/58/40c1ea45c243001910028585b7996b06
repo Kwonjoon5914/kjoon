@@ -1,0 +1,13 @@
+package 반복문;
+
+import java.util.Scanner;
+
+public class 달력과제190311 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
+		int year = 0, days = 0, dayOfWeek = 0, month = 0, day = 0;
+	}
+
+}

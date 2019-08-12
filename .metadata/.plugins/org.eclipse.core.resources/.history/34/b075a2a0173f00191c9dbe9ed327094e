@@ -1,0 +1,24 @@
+package 영수증;
+
+public class 영수증만들기 {
+	  static public void main( String args[] ) {
+		    System.out.println("IC신용승인                    (   고     객     용  )");
+		    System.out.print("단말기 : 1A79798148     전표번호 :  020298\n" );
+		    System.out.print("가맹점 : 김태준의 탕탕집\n" );
+		    System.out.print("주 소 : 서울 강남구 학동로4길 12. 1. 2층(논현동)\n");
+		    System.out.print("대표자 : 김태준\n");
+		    System.out.print("사업자 : 536-37-00183     TEL : 02-511-3235\n");
+		    System.out.print("금  액 :          			6. 818  원\n");
+		    System.out.print("부가세 :          			   682  원\n");
+		    System.out.print("합  계 :          			7. 500  원\n");
+		    System.out.print("IBK비씨카드\n");
+		    System.out.print("카드번호 : 6250-03**-****-4903(C)     일시불\n");
+		    System.out.print("거래일시 : 2018/01/30 12:46:24\n");
+		    System.out.print("승인번호 : 72110079\n");
+		    System.out.print("매입 : 비씨카드사       가맹 : 798606607\n");
+		    System.out.print("알림 : EDC매출표\n");
+		    System.out.print("문의 : TEL)1544-4700\n");
+		    System.out.print("             *  감사합니다  *\n");
+		    System.out.print("    N617021027/2. 05/20170215/0510");
+		    } 
+}

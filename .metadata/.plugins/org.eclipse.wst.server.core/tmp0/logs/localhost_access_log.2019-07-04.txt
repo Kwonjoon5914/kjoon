@@ -1,0 +1,7 @@
+127.0.0.1 - - [04/Jul/2019:12:54:55 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [04/Jul/2019:12:54:56 +0900] "GET /helloWorld/helloworld.jsp HTTP/1.1" 200 162
+0:0:0:0:0:0:0:1 - - [04/Jul/2019:13:11:11 +0900] "GET /helloWorld/WebServerPrograming4/BasicFunction.jsp HTTP/1.1" 200 163
+0:0:0:0:0:0:0:1 - - [04/Jul/2019:13:42:20 +0900] "GET /helloWorld/WebServerPrograming4/BasicFunction2.jsp HTTP/1.1" 200 179
+127.0.0.1 - - [04/Jul/2019:14:21:34 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [04/Jul/2019:14:21:36 +0900] "GET /WebServerProgramming4/JavaScript%20vs%20JSP.jsp HTTP/1.1" 200 394
+0:0:0:0:0:0:0:1 - - [04/Jul/2019:14:28:19 +0900] "GET /WebServerProgramming4/JavaScript%20vs%20JSP2.jsp HTTP/1.1" 200 186

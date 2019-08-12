@@ -1,0 +1,50 @@
+//////////////////////////////////////////////////////
+//
+// Title : 실무실습 8
+// Date  : 2019.05.25
+// Author : KJ
+// Comment : 삼성전자만추출하여 A005930만들기
+//
+//////////////////////////////////////////////////////
+package java특강7;
+
+import java.io.*;
+
+public class 삼성전자만추출하여A005930만들기 {
+
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+		
+		// \는 특수문자이므로 \\두 개를 써야한다.
+		File f = new File("C:\\Users\\NoName\\Desktop\\교안\\BIZ프로그래밍기초\\실습데이터\\day_data\\THTSKS010H00.dat");
+		BufferedReader br = new BufferedReader(new FileReader(f));
+
+		File f1 = new File("C:\\Users\\NoName\\Desktop\\교안\\BIZ프로그래밍기초\\실습데이터\\day_data\\A005930.csv");
+		BufferedWriter bw1 = new BufferedWriter(new FileWriter(f1));
+
+		String readtxt;
+		int cnt=0; int wcnt=0;
+		while((readtxt=br.readLine())!=null) {
+			StringBuffer s = new StringBuffer();
+			// 구분자를 %_%로 잡는다.=>필드 분할
+			String[] field = readtxt.split("%_%");
+			// ^ 특수문자를 제거 후 원하는 필드 검출 field[1]이 20150112
+			if(field.length>2 && field[1].replace("^", "").trim().equals("20150112")) {
+				s.append(field[0].replace("^", "").trim());//제거 후 버퍼에 추가
+				// 처음부터 끝까지 ^를 제거한다.
+				for(int j=1; j< field.length;j++) {
+					s.append(","+field[j].replace("^", "").trim());//제거 후 버퍼에 추가
+				}
+				// 조건에 해당하는 줄을 버퍼를 이용하여 입력
+				bw1.write(s.toString()); bw1.newLine();//파일에 쓴다
+				wcnt++;
+			}
+			cnt++;
+		}
+		// 버퍼 종료
+		br.close();
+		bw1.close();
+		
+		System.out.printf("Program End[%d][%d]records\n", cnt, wcnt);
+	}
+}

@@ -1,0 +1,51 @@
+import java.sql.*;
+
+import java.util.Scanner;
+
+public class Mainclass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			Scanner in = new Scanner(System.in);
+			String student_id, student_name, student_birth, student_address;
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
+		    Connection conn = DriverManager.getConnection(
+		    		"jdbc:mysql://localhost/student?useSSL=false&serverTimezone=UTC", 
+		    												"root" , "rnjs4288");
+		    Statement stmt = conn.createStatement(); 
+		    
+		    System.out.println("학번 : ");
+		    student_id = in.nextLine();
+		    System.out.println("이름 : ");
+		    student_name = in.nextLine();
+		    System.out.println("생일 : ");
+		    student_birth = in.nextLine();
+		    System.out.println("주소 : ");
+		    student_address = in.nextLine();
+		    
+		    stmt.execute("INSERT INTO student_table (number, name, birth, address) " +
+		    			"VALUES ('" + student_id + 
+		    			"', '" + student_name + 
+		    			"', '" + student_birth +
+		    			"', '" + student_address + 
+		    			"')");
+		    
+		    ResultSet rset = stmt.executeQuery("SELECT * FROM `student_table`");  //sql문을 전달
+		    while (rset.next()) { 
+		          System.out.println(rset.getInt(1) + ", " + 
+					        		  rset.getString(2) + ", " + 
+					        		  rset.getInt(3) + ", " + 
+					        		  rset.getString(4));
+		    } 
+		    rset.close(); 
+		    stmt.close(); 
+		    conn.close(); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}

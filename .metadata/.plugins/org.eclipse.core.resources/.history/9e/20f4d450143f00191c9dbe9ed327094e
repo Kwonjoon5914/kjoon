@@ -1,0 +1,6 @@
+package 영수증;
+
+public class 영수증만들기 {
+	  static public void main( String args[] ) {
+		    System.out.println( "IC신용승인" );
+}

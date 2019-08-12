@@ -1,0 +1,89 @@
+//////////////////////////////////////////////////////
+//
+// Title : 실무실습 5
+// Date  : 2019.05.25
+// Author : KJ
+// Comment : 가장 가까운 곳 먼곳
+//
+//////////////////////////////////////////////////////
+package java특강7;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class 가장가까운곳먼곳 {
+
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+		File f= new File("C:\\Users\\NoName\\Desktop\\전국무료와이파이표준데이터.txt");
+		BufferedReader br= new BufferedReader(new FileReader(f));
+		
+		String readtxt;//선언
+		
+		// 빈 파일일 경우
+		if((readtxt=br.readLine())==null) {
+			System.out.printf("빈 파일입니다\n");//출력
+			return;
+		}
+		// 첫줄은 필드명이기 때문에 따로 읽는다.
+		// 탭을 기준으로 필드를 나눈다.
+		String[] field_name= readtxt.split("\t");//탭으로 쪼개기
+		
+		// 융합기술 위도경도
+		// 위도 :37.3856012
+		// 경도 :127.1203785
+		// 우리집 위도경도
+		// 위도 :37.2785691
+		// 경도 :127.1109105
+
+		double lat=37.3856012;//위도변수
+		double lng=127.1203785;//경도 변수
+		double close_dist=1000;//가까운 거리값 변수
+		double far_dist=0;//먼 거리값 변수
+		String close="";
+		String far="";
+		
+		int LineCnt=0;
+		while((readtxt= br.readLine())!=null) {//빈 값이 아니면 아래와 같이 출력
+			String[] field = readtxt.split("\t");//필드별 탭으로 쪼갠 것을 배열변수로 선언
+			System.out.printf("**[%d번째 항목]**************\n", LineCnt);
+			// 9번 : 지번주소
+			System.out.printf(" %s : %s\n", field_name[9], field[9]);
+			// 12번 : 위도주소
+			System.out.printf(" %s : %s\n", field_name[12], field[12]);
+			// 13번 : 경도주소
+			System.out.printf(" %s : %s\n", field_name[13], field[13]);
+			// 위도,경도 사용하여 거리 계산(파일의 필드값 이용)
+			double dist=Math.sqrt(Math.pow(Double.parseDouble(field[12])-lat, 2) + 
+								 Math.pow(Double.parseDouble(field[13])-lng, 2));
+			if(close_dist > dist) {
+				close_dist = dist;//가까운거리
+				close = String.format(" %s : %s\n %s : %s\n %s : %s\n 거리: %f\n", field_name[9], field[9],
+																		field_name[12], field[12],
+																		field_name[13], field[13],
+																		close_dist);
+			}
+			if(far_dist < dist) {
+				far_dist = dist;//먼거리
+				far = String.format(" %s : %s\n %s : %s\n %s : %s\n 거리: %f\n", field_name[9], field[9],
+																		field_name[12], field[12],
+																		field_name[13], field[13],
+																		far_dist);
+			}
+			System.out.printf(" 현재지전과 거리 : %f\n", dist);
+			System.out.printf("****************************\n");
+			LineCnt++;
+			
+		}
+		System.out.println(" 계산 종료");
+		System.out.printf("****************************\n");
+		br.close();
+		
+		System.out.println(" 가장 가까운 장소");
+		System.out.println(close);
+		System.out.println(" 가장 먼 장소");
+		System.out.println(far);
+	}
+}

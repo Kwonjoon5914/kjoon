@@ -1,0 +1,42 @@
+package 반복문;
+
+import java.util.Scanner;
+
+public class 달력과제190311 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
+		int year = 0, days = 0, dayOfWeek = 0, month = 0, day = 0;
+		System.out.println("원하는 연도를 입력하세요 : ");
+		year = in.nextInt();
+		System.out.println("원하는 달을 입력하세요 : ");
+		month = in.nextInt();
+		days = (year - 1900) * 365;
+		System.out.printf("%d년 %d월 달력\n", year, month);
+		System.out.printf("%3d\n", dayOfWeek);
+		for(int i=1900; i<year; i++)
+			if((i%4 == 0 && i%100 != 0) || i%400 == 0) {
+				// 윤년이 포함되는 경우는 그 해에 +1 해주기
+				days++;
+			}
+			if((year % 4 == 0 && year % 100 !=0) || year % 400 == 0);
+					if(month >= 3) { //원하는 연도 당해가 윤년이면, 3월 이후 날짜는 +1 해줄것
+				days++;
+			days = days + day - 1;
+			dayOfWeek = days % 7;
+			for(int i=1;i<8;i++) {
+				System.out.print(i);
+			for(int j=8;j<15;j++) {
+				System.out.print(j);
+			for(int k=15;k<22;k++) {
+				System.out.print(k);
+			}
+				System.out.println();
+			}
+			in.close();
+			}
+		}
+	}
+}
+		

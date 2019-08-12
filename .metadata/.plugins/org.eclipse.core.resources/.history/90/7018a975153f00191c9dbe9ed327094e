@@ -1,0 +1,10 @@
+package 영수증;
+
+public class 영수증만들기 {
+	  static public void main( String args[] ) {
+		    System.out.println("IC신용승인                    ( 고   객   용 )");
+		    System.out.print("단말기 : 1A79798148     전표번호 :  020298"); 
+		    
+		    
+	  }
+}

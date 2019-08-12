@@ -1,0 +1,10 @@
+package 반복문;
+
+public class for루프 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

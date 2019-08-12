@@ -1,0 +1,16 @@
+package 쓰레드;
+
+public class processOne extends Thread {
+	Thread t; //Thread 보면 while-true가 많음
+
+	processOne() {
+		t = new Thread(this);
+		t.start();
+	}
+
+	public void run() {
+		for (int i = 0; i < 100; i++) {
+			System.out.println("One : " + i);
+		}
+	}
+}
